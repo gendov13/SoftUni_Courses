@@ -131,75 +131,122 @@ def display_menu():
     print("11. Copy")
     print("12. Exit")
 
+
 def handle_append(lst):
     # TODO: Prompt the user for a value to append to the list
     # Use the append() method to add the value to the list
     # Print the updated list
-    pass
+    value = input()
+    lst.append(value)
+    print(f"Updated list: {lst}")
+
 
 def handle_extend(lst):
     # TODO: Prompt the user for values to extend the list (comma-separated)
     # Use the extend() method to add these values to the list
     # Print the updated list
-    pass
+    values = input("Enter the values you want to extend(comma-separated)").split(",")
+    lst.extend(values)
+    print("Updated list:", lst)
+
 
 def handle_insert(lst):
     # TODO: Prompt the user for an index and a value to insert at that index
     # Use the insert() method to add the value at the specified index
     # Print the updated list
-    pass
+    # Ask the user for an index
+    # Try to access the element at the provided index
+    value = input("Enter the value you want to insert:")
+    index = int(input("Enter the index you want to insert he valua at:"))
+    lst.insert(index, value)
+    print("Updated list:", lst)
+
 
 def handle_remove(lst):
     # TODO: Prompt the user for a value to remove from the list
     # Use the remove() method to delete the first occurrence of the value
     # Handle the case where the value is not found in the list
     # Print the updated list
-    pass
+    value = input("Enter the value you want to remove:")
+    if value in lst:
+        lst.remove(value)
+        print("Updated list:", lst)
+    else:
+        print("Value not found in the list!")
+
 
 def handle_pop(lst):
     # TODO: Prompt the user for an index to pop (optional, leave empty to pop last item)
     # Use the pop() method to remove the item at the specified index or the last item if no index is provided
     # Handle the case where the index is out of range
     # Print the updated list
-    pass
+    while True:
+        try:
+            index = int(input("Enter an index: "))
+            lst.pop(index)
+        except (IndexError, ValueError) as massage:
+            # If an IndexError or ValueError occurs, print an error message
+            if isinstance(massage, IndexError):
+                print("Invalid index! Please try again.")
+        else:
+            # If no exception occurs, return the element
+            print("Updated list:", lst)
+
 
 def handle_clear(lst):
     # TODO: Use the clear() method to remove all items from the list
-    # Print the updated list
-    pass
+    lst.clear()
+    print("Updated list:", lst)
+
 
 def handle_index(lst):
     # TODO: Prompt the user for a value to find its index
     # Use the index() method to find the index of the value
     # Handle the case where the value is not found in the list
     # Print the index of the value
-    pass
+    while True:
+        value = input("Enter the value you want to search the index: ")
+        try:
+            tried_index = lst.index(value)
+            print(f"The index of {value}: {tried_index}")
+        except ValueError:
+            print("Value not found in the list. Please try again!")
+        else:
+            # If no exception occurs, return the element
+            print("Updated list:", lst)
+            break
+
 
 def handle_count(lst):
     # TODO: Prompt the user for a value to count its occurrences in the list
     # Use the count() method to count how many times the value appears in the list
-    # Print the count of the value
-    pass
+    value = input("Enter the value you want to count: ")
+    count = lst.count(value)
+    print(f"Count of {value}: {count}")
+
 
 def handle_sort(lst):
     # TODO: Use the sort() method to sort the list in ascending order
-    # Print the updated list
-    pass
+    lst.sort()
+    print("Updated list:", lst)
+
 
 def handle_reverse(lst):
     # TODO: Use the reverse() method to reverse the order of the list
-    # Print the updated list
-    pass
+    lst.reverse()
+    print("Updated list:", lst)
+
 
 def handle_copy(lst):
     # TODO: Use the copy() method to create a shallow copy of the list
-    # Print the copied list
-    pass
+    x = lst.copy()
+    print(x)
+
 
 def main():
     initial_values = input("Enter initial list values (comma-separated): ")
     lst = initial_values.split(',')
-    
+
     while True:
         display_menu()
         choice = input("Enter your choice (1-12): ")
@@ -231,8 +278,10 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
+
 if __name__ == "__main__":
     main()
+
 ```
 
 ## Instructions for Students:
